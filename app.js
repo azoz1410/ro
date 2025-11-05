@@ -54,12 +54,19 @@ function initializeLoginPage() {
         password: document.getElementById("password").value,
       };
 
-      console.log("بيانات تسجيل الدخول:", formData);
+      console.log("Login data:", formData);
 
-      // هنا يمكنك إضافة كود الاتصال بالخادم
-      alert("جاري تسجيل الدخول...");
+      // Store user session
+      localStorage.setItem("currentUser", JSON.stringify(formData));
 
-      // مثال: إرسال البيانات إلى الخادم
+      // Redirect to services page
+      setTimeout(() => {
+        window.location.href = "services.html";
+      }, 1000);
+
+      alert("Login successful! Redirecting to services...");
+
+      // Example: Send data to server
       // fetch('login.php', {
       //   method: 'POST',
       //   headers: {'Content-Type': 'application/json'},
