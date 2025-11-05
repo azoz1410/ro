@@ -1,0 +1,568 @@
+/* إعادة تعيين الأنماط */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background-color: #000000;
+}
+
+/* شاشة الشعار */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 0.5s ease-in-out 1.5s forwards;
+}
+
+.logo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: scaleIn 0.8s ease-out;
+}
+
+.logo {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.logo-image {
+    width: 100%;
+    height: 20%;
+    object-fit: cover;
+    animation: logoZoom 0.8s ease-out;
+}
+
+.logo h1 {
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes logoZoom {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* التطبيق الرئيسي */
+.main-app {
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out 2s forwards;
+}
+
+.main-app.hidden {
+    display: none;
+}
+
+.app-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.app-content {
+    padding: 20px;
+    max-width: 100%;
+}
+
+.app-content p {
+    font-size: 1.1em;
+    color: #333;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* صفحة تسجيل الدخول */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    position: relative;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* أيقونة الخريطة */
+.map-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4),
+                0 0 40px rgba(212, 175, 55, 0.3),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.2);
+    animation: bounceIn 1s ease-out;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+.map-icon svg {
+    width: 45px;
+    height: 45px;
+    color: #000000;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* نموذج تسجيل الدخول */
+.login-form {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    border-radius: 20px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.2),
+                inset 0 1px 0 rgba(212, 175, 55, 0.3);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.form-title {
+    text-align: center;
+    color: #d4af37;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5),
+                 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* مجموعة الإدخال */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #d4af37;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.4);
+    color: #f4d03f;
+    backdrop-filter: blur(5px);
+}
+
+.input-group input::placeholder {
+    color: rgba(212, 175, 55, 0.5);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #d4af37;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2),
+                0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 42px;
+    width: 20px;
+    height: 20px;
+    color: #d4af37;
+    pointer-events: none;
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
+}
+
+.input-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* زر إظهار/إخفاء كلمة المرور */
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    color: #d4af37;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.5));
+}
+
+.toggle-password:hover {
+    color: #f4d03f;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8));
+    transform: scale(1.1);
+}
+
+.toggle-password svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* زر تسجيل الدخول */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+    color: #000000;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5),
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.7),
+                0 0 40px rgba(212, 175, 55, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: linear-gradient(135deg, #f4d03f 0%, #ffd700 50%, #f4d03f 100%);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5),
+                inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* فاصل وسائل التواصل */
+.social-divider {
+    text-align: center;
+    margin: 30px 0 20px;
+    position: relative;
+}
+
+.social-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.5) 20%, 
+                rgba(212, 175, 55, 0.8) 50%, 
+                rgba(212, 175, 55, 0.5) 80%, 
+                transparent 100%);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.social-divider span {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    padding: 0 15px;
+    color: #d4af37;
+    font-size: 0.9em;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* أزرار وسائل التواصل الاجتماعي */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-social {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.btn-social svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-social:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4),
+                0 0 20px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.6);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.btn-facebook {
+    color: #d4af37;
+}
+
+.btn-facebook:hover {
+    background: rgba(24, 119, 242, 0.2);
+    color: #f4d03f;
+    border-color: #d4af37;
+    box-shadow: 0 0 20px rgba(24, 119, 242, 0.3);
+}
+
+.btn-facebook svg {
+    fill: currentColor;
+}
+
+.btn-google {
+    color: #d4af37;
+}
+
+.btn-google:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #d4af37;
+    color: #f4d03f;
+}
+
+.btn-apple {
+    color: #d4af37;
+}
+
+.btn-apple:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f4d03f;
+    border-color: #d4af37;
+}
+
+.btn-apple svg {
+    fill: currentColor;
+}
+
+/* حركة الارتداد */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* الحركات */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 2em;
+    }
+    
+    .app-header h2 {
+        font-size: 1.5em;
+    }
+
+    .login-form {
+        padding: 25px 20px;
+    }
+
+    .form-title {
+        font-size: 1.5em;
+        margin-bottom: 25px;
+    }
+
+    .map-icon {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 25px;
+    }
+
+    .map-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.5em;
+    }
+    
+    .app-header h2 {
+        font-size: 1.3em;
+    }
+
+    .login-container {
+        padding: 15px;
+    }
+
+    .login-form {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .form-title {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    .map-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+
+    .map-icon svg {
+        width: 35px;
+        height: 35px;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group input {
+        padding: 12px 12px 12px 40px;
+        font-size: 0.95em;
+    }
+
+    .input-group label {
+        font-size: 0.85em;
+        margin-bottom: 6px;
+    }
+
+    .btn-login {
+        padding: 13px;
+        font-size: 1em;
+    }
+
+    .btn-social {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .social-divider {
+        margin: 25px 0 15px;
+    }
+}
+
+/* تحسينات إضافية للأجهزة الصغيرة جداً */
+@media (max-width: 360px) {
+    .login-form {
+        padding: 15px 12px;
+    }
+
+    .form-title {
+        font-size: 1.2em;
+    }
+
+    .input-group input {
+        padding: 10px 10px 10px 35px;
+        font-size: 0.9em;
+    }
+}
